@@ -1,0 +1,15 @@
+kind: heatmap
+source: demo.mp4
+output: fire_heatmap.mp4
+show: false
+model: null
+classes:
+- 0
+conf: 0.35
+iou: 0.7
+imgsz: 640
+device: null
+tracker: bytetrack.yaml
+line_width: 2
+colormap: COLORMAP_JET
+verbose: false

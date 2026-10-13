@@ -1,0 +1,6 @@
+path: D:/Do_An/Fire_Smoke_develop/datasets/V2_fire_and_negsample
+train: D:/Do_An/Fire_Smoke_develop/datasets/V2_fire_and_negsample/Indoor_fire_and_neg-samples/train/images
+val: D:/Do_An/Fire_Smoke_develop/datasets/V2_fire_and_negsample/Indoor_fire_and_neg-samples/valid/images
+test: D:/Do_An/Fire_Smoke_develop/datasets/V2_fire_and_negsample/Indoor_fire_and_neg-samples/test/images
+names:
+  0: fire

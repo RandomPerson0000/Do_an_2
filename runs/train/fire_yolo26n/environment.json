@@ -1,0 +1,8 @@
+{
+  "timestamp_utc": "2026-10-12T18:45:35.293337+00:00",
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "ultralytics": "8.4.175",
+  "torch": "2.11.0+cu128",
+  "cuda_available": true
+}

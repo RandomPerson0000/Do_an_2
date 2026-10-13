@@ -1,0 +1,5 @@
+# Cài PyTorch phù hợp CUDA/driver trước nếu muốn train NVIDIA GPU.
+# Không khóa phiên bản chưa được kiểm thử; mỗi run xuất requirements-lock.txt.
+ultralytics
+PyYAML>=6.0
+tensorboard
