@@ -22,8 +22,8 @@ def parse_args():
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     model_source = parser.add_mutually_exclusive_group()
     model_source.add_argument("--weights", type=Path, help="Explicit path to a trained best.pt")
-    model_source.add_argument("--run", default="fire_smoke_yolo26n_V2",
-                              help="Folder under runs/train (default: fire_smoke_yolo26n_V2)")
+    model_source.add_argument("--run", default="fire_yolo26n",
+                              help="Folder under runs/train (default: fire_yolo26n)")
     parser.add_argument("--monitor", type=int, default=1, help="Monitor number, starting at 1")
     parser.add_argument("--list-monitors", action="store_true", help="List monitors and exit")
     area = parser.add_mutually_exclusive_group()
@@ -44,7 +44,7 @@ def parse_args():
     return args
 
 
-def find_weights(requested, run="fire_smoke_yolo26n_V2"):
+def find_weights(requested, run="fire_yolo26n"):
     if requested is not None:
         path = requested.expanduser().resolve()
         if not path.is_file():
