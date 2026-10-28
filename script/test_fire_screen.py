@@ -1,18 +1,14 @@
-"""Run a trained YOLO model on a live desktop capture.
+﻿"""Select a video, predict fire/smoke, and save an annotated MP4 in predict/1st_predict.
 
-Install in the environment used for training:
-    python -m pip install mss opencv-python
-Run and select the video area:
-    python script/test.py --select
-Or capture a whole monitor:
-    python script/test.py --monitor 1
-Press Q or Esc in the result window to stop.
+Run: python script/test_fire_screen.py
+Or:  python script/test_fire_screen.py --video "capture_4_test/video.mp4"
+The output has no audio. Q / Esc stops and saves the processed portion.
 """
 
 import argparse
+import math
 from pathlib import Path
 import time
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -20,139 +16,135 @@ ROOT = Path(__file__).resolve().parents[1]
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    model_source = parser.add_mutually_exclusive_group()
-    model_source.add_argument("--weights", type=Path, help="Explicit path to a trained best.pt")
-    model_source.add_argument("--run", default="fire_yolo26n",
-                              help="Folder under runs/train (default: fire_yolo26n)")
-    parser.add_argument("--monitor", type=int, default=1, help="Monitor number, starting at 1")
-    parser.add_argument("--list-monitors", action="store_true", help="List monitors and exit")
-    area = parser.add_mutually_exclusive_group()
-    area.add_argument("--select", action="store_true", help="Select a rectangle on a screenshot before starting")
-    area.add_argument("--region", nargs=4, type=int, metavar=("X", "Y", "WIDTH", "HEIGHT"),
-                      help="Capture rectangle relative to the selected monitor, in pixels")
-    parser.add_argument("--conf", type=float, default=0.25, help="Confidence threshold (default: 0.25)")
-    parser.add_argument("--imgsz", type=int, default=640, help="Inference image size (default: 640)")
-    parser.add_argument("--device", default=None, help="For example: cpu or 0 (default: automatic)")
-    parser.add_argument("--fps", type=float, default=30, help="Maximum capture rate (default: 30)")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--weights", type=Path, help="Path to trained best.pt")
+    source.add_argument("--run", default="fire_yolo26n", help="Folder under runs/train")
+    parser.add_argument("--video", type=Path, help="Input video; omit to open file picker")
+    parser.add_argument("--conf", type=float, default=0.335)
+    parser.add_argument("--imgsz", type=int, default=640)
+    parser.add_argument("--device", default=None, help="cpu or 0; default: automatic")
+    parser.add_argument("--no-preview", action="store_true")
     args = parser.parse_args()
     if not args.run or args.run in (".", "..") or any(c in args.run for c in '<>:"/\\|?*') or args.run.endswith((" ", ".")):
         parser.error("--run must be a simple folder name")
     if not 0 <= args.conf <= 1:
         parser.error("--conf must be between 0 and 1")
-    if args.imgsz <= 0 or args.fps <= 0:
-        parser.error("--imgsz and --fps must be positive")
+    if args.imgsz <= 0:
+        parser.error("--imgsz must be positive")
     return args
 
 
 def find_weights(requested, run="fire_yolo26n"):
-    if requested is not None:
-        path = requested.expanduser().resolve()
-        if not path.is_file():
-            raise FileNotFoundError(f"Model not found: {path}")
-        return path
-    path = ROOT / "runs" / "train" / run / "weights" / "best.pt"
+    path = (requested.expanduser().resolve() if requested is not None
+            else ROOT / "runs" / "train" / run / "weights" / "best.pt")
     if not path.is_file():
-        raise FileNotFoundError(f"Model not found: {path}. Train this version first, or choose --run / --weights explicitly.")
+        raise FileNotFoundError(f"Model not found: {path}. Choose --run / --weights explicitly.")
     return path
+
+
+def choose_video():
+    try:
+        import tkinter as tk
+        from tkinter import filedialog
+    except ImportError as exc:
+        raise RuntimeError('Video picker unavailable. Use --video "path/to/video.mp4".') from exc
+    root = tk.Tk()
+    root.withdraw()
+    try:
+        root.attributes("-topmost", True)
+        initial_dir = ROOT / "capture_4_test"
+        selected = filedialog.askopenfilename(
+            parent=root, title="Select video for fire / smoke prediction",
+            initialdir=str(initial_dir if initial_dir.is_dir() else ROOT),
+            filetypes=[("Video files", "*.mp4 *.avi *.mkv *.mov *.webm *.m4v *.wmv *.mpeg *.mpg"),
+                       ("All files", "*.*")])
+    finally:
+        root.destroy()
+    return Path(selected) if selected else None
+
+
+def predict_video(args, video, weights):
+    try:
+        import cv2
+        import torch
+        from ultralytics import YOLO
+    except ImportError as exc:
+        raise RuntimeError("Use the training environment with opencv-python, torch and ultralytics installed.") from exc
+    device = args.device if args.device is not None else (0 if torch.cuda.is_available() else "cpu")
+    capture = cv2.VideoCapture(str(video))
+    writer = None
+    frame_count = 0
+    stopped = False
+    window = "Fire / Smoke - video (Q or Esc to stop)"
+    try:
+        if not capture.isOpened():
+            raise ValueError(f"Cannot open video: {video}")
+        success, frame = capture.read()
+        if not success:
+            raise ValueError(f"Cannot read the first frame: {video}")
+        fps = capture.get(cv2.CAP_PROP_FPS)
+        if not math.isfinite(fps) or fps <= 0:
+            fps = 30.0
+            print("Video FPS unavailable; using 30 FPS for output.")
+        height, width = frame.shape[:2]
+        model = YOLO(str(weights))
+        output_dir = ROOT / "predict" / "predict_model1_conf0.335"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_path = output_dir / f"{video.stem}_predict_{time.time_ns()}.mp4"
+        writer = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*"mp4v"),
+                                 fps, (width, height))
+        if not writer.isOpened():
+            raise OSError(f"Cannot create output video: {output_path}")
+        print(f"Model: {weights}\nDevice: {device}\nInput: {video}\nOutput: {output_path}")
+        print(f"Output: {width}x{height}, {fps:g} FPS, without audio.")
+        if not args.no_preview:
+            cv2.namedWindow(window, cv2.WINDOW_NORMAL)
+            scale = min(1.0, 960 / width, 640 / height)
+            cv2.resizeWindow(window, max(1, round(width * scale)), max(1, round(height * scale)))
+        while success:
+            result = model.predict(source=frame, conf=args.conf, imgsz=args.imgsz,
+                                   device=device, verbose=False, save=False)[0]
+            annotated = result.plot()
+            writer.write(annotated)
+            frame_count += 1
+            if frame_count % 100 == 0:
+                print(f"Processed {frame_count} frames.")
+            if not args.no_preview:
+                cv2.imshow(window, annotated)
+                key = cv2.waitKey(1) & 0xFF
+                if key in (27, ord("q"), ord("Q")) or cv2.getWindowProperty(window, cv2.WND_PROP_VISIBLE) < 1:
+                    stopped = True
+                    break
+            success, frame = capture.read()
+    except KeyboardInterrupt:
+        stopped = True
+    finally:
+        capture.release()
+        if writer is not None:
+            writer.release()
+        if not args.no_preview:
+            cv2.destroyAllWindows()
+    if frame_count:
+        status = "Stopped early; saved processed portion" if stopped else "Saved"
+        print(f"{status}: {output_path} ({frame_count} frames)")
+    elif stopped:
+        print("Stopped before any frames were saved.")
 
 
 def main():
     args = parse_args()
-    # Report a missing version before opening screen capture or selection windows.
-    weights = None
-    if not args.list_monitors:
-        try:
-            weights = find_weights(args.weights, args.run)
-        except FileNotFoundError as exc:
-            raise SystemExit(str(exc)) from exc
     try:
-        import cv2
-        import mss
-        import numpy as np
-    except ImportError as exc:
-        raise SystemExit("Missing capture dependency. Run: python -m pip install mss opencv-python numpy") from exc
-
-    try:
-        with mss.mss() as capture:
-            if args.list_monitors:
-                for index, monitor in enumerate(capture.monitors[1:], start=1):
-                    print(f"Monitor {index}: {monitor}")
-                return
-            if not 1 <= args.monitor < len(capture.monitors):
-                raise ValueError("Invalid monitor number. Use --list-monitors to check.")
-            monitor = capture.monitors[args.monitor]
-            region = dict(monitor)
-            rectangle = args.region
-            if args.select:
-                snapshot = np.asarray(capture.grab(monitor))[:, :, :3].copy()
-                # Scale the selection image to fit on the selected display.
-                scale = min(1.0, 1280 / monitor["width"],
-                            max(1, monitor["height"] - 160) / monitor["height"])
-                preview = cv2.resize(snapshot, None, fx=scale, fy=scale)
-                title = "Select video area - ENTER to confirm, C to cancel"
-                print("Drag around the video, then press ENTER. C cancels.")
-                x, y, width, height = cv2.selectROI(title, preview, showCrosshair=True, fromCenter=False)
-                cv2.destroyWindow(title)
-                if width == 0 or height == 0:
-                    print("Selection cancelled.")
-                    return
-                sx = monitor["width"] / preview.shape[1]
-                sy = monitor["height"] / preview.shape[0]
-                left, top = round(x * sx), round(y * sy)
-                right = min(monitor["width"], round((x + width) * sx))
-                bottom = min(monitor["height"], round((y + height) * sy))
-                rectangle = (left, top, right - left, bottom - top)
-            if rectangle is not None:
-                x, y, width, height = rectangle
-                if (x < 0 or y < 0 or width <= 0 or height <= 0
-                        or x + width > monitor["width"] or y + height > monitor["height"]):
-                    raise ValueError("Capture region must fit inside the selected monitor.")
-                region = dict(left=monitor["left"] + x, top=monitor["top"] + y,
-                              width=width, height=height)
-                print(f"Reuse selection: --monitor {args.monitor} --region {x} {y} {width} {height}")
-
-            try:
-                import torch
-                from ultralytics import YOLO
-            except ImportError as exc:
-                raise SystemExit("Use the Python environment used for training (torch and ultralytics required).") from exc
-            device = args.device if args.device is not None else (0 if torch.cuda.is_available() else "cpu")
-            print(f"Model: {weights}\nDevice: {device}\nCapture: {region}")
-            print("Keep the result window outside the captured area. Press Q or Esc to exit.")
-            model = YOLO(str(weights))
-            window = "Fire / Smoke - live screen (Q or Esc to exit)"
-            cv2.namedWindow(window, cv2.WINDOW_NORMAL)
-            display_scale = min(1.0, 960 / region["width"], 640 / region["height"])
-            cv2.resizeWindow(window, max(1, round(region["width"] * display_scale)),
-                             max(1, round(region["height"] * display_scale)))
-            last_frame = None
-            fps = 0.0
-            while True:
-                started = time.perf_counter()
-                if last_frame is not None:
-                    measured = 1.0 / max(started - last_frame, 1e-6)
-                    fps = measured if fps == 0 else 0.9 * fps + 0.1 * measured
-                last_frame = started
-                # MSS returns BGRA; YOLO accepts a contiguous BGR numpy image.
-                frame = np.asarray(capture.grab(region))[:, :, :3].copy()
-                result = model.predict(source=frame, conf=args.conf, imgsz=args.imgsz,
-                                       device=device, verbose=False, save=False)[0]
-                annotated = result.plot()
-                cv2.putText(annotated, f"FPS: {fps:.1f} | Q / Esc: quit", (12, 28),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-                cv2.imshow(window, annotated)
-                remaining = 1.0 / args.fps - (time.perf_counter() - started)
-                key = cv2.waitKey(max(1, round(remaining * 1000))) & 0xFF
-                if key in (27, ord("q"), ord("Q")):
-                    break
-                if cv2.getWindowProperty(window, cv2.WND_PROP_VISIBLE) < 1:
-                    break
-    except KeyboardInterrupt:
-        print("\nStopped.")
-    except (FileNotFoundError, ValueError) as exc:
+        video = args.video if args.video is not None else choose_video()
+        if video is None:
+            print("Selection cancelled.")
+            return
+        video = video.expanduser().resolve()
+        if not video.is_file():
+            raise FileNotFoundError(f"Video not found: {video}")
+        weights = find_weights(args.weights, args.run)
+        predict_video(args, video, weights)
+    except (OSError, ValueError, RuntimeError) as exc:
         raise SystemExit(str(exc)) from exc
-    finally:
-        cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

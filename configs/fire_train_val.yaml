@@ -4,7 +4,7 @@ imgsz: 640
 batch: 4
 device: null
 workers: 0
-conf: 0.25
+conf: 0.5
 iou: 0.7
 max_det: 300
 augment: false
