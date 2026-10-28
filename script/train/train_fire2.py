@@ -72,7 +72,7 @@ def init_configs(args):
     for file in (output, data_file, val_file, solution_file):
         if file.exists():
             raise FileExistsError(f"Không ghi đè: {file}. Hãy chọn tên YAML mới.")
-    data = {"path": root.as_posix(), **resolved, "names": {0: "fire"}}
+    data = {"path": root.as_posix(), **resolved, "names": {0: "fire", 1:"smoke"}}
     # Cấu hình khởi đầu đề xuất; cần tinh chỉnh bằng kết quả thực nghiệm.
     train_cfg = {
         "task": "detect", "mode": "train", "model": args.model,
