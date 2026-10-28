@@ -117,8 +117,8 @@ def init_configs(args):
 def check_dataset(data_file, split="train"):
     """Kiểm tra định dạng bbox 1 class; không đánh giá độ đúng của annotation."""
     data = read_yaml(data_file)
-    if data.get("names") not in ({0: "fire"}, ["fire"]):
-        raise ValueError("Bộ code này dành cho một class, names: {0: fire}.")
+    if data.get("names") not in ({0: "fire", 1: "smoke"}, ["fire", "smoke"]):
+        raise ValueError("Dataset cần 2 class: fire=0, smoke=1.")
     root = path_of(data.get("path", Path(data_file).parent))
     keys = ("train", "val") if split == "train" else (split,)
     seen = set()
@@ -153,7 +153,7 @@ def check_dataset(data_file, split="train"):
                 if len(vals) != 5 or not all(math.isfinite(v) for v in vals):
                     raise ValueError(f"Sai định dạng bbox: {label}: {line}")
                 cls, x, y, w, h = vals
-                if cls != 0 or not (0 <= x <= 1 and 0 <= y <= 1 and 0 < w <= 1 and 0 < h <= 1):
+                if cls not in (0, 1) or not (0 <= x <= 1 and 0 <= y <= 1 and 0 < w <= 1 and 0 < h <= 1):
                     raise ValueError(f"Sai class hoặc tọa độ chuẩn hóa: {label}: {line}")
                 objects += 1
             positive += objects > 0
