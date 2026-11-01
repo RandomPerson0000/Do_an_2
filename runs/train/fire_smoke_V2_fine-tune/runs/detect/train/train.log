@@ -1,0 +1,365 @@
+2026-10-31 15:27:01,232 INFO 
+2026-10-31 15:27:01,233 WARNING WARNING Dataset 'coco8.yaml' images not found, missing path 'D:\Do_An\vehicle-edge-research\vehicle-edge-research\vehicle-edge-research\datasets\coco8\images\val'
+2026-10-31 15:27:02,074 INFO Dataset download success ✅ (0.8s), saved to [1mD:\Do_An\vehicle-edge-research\vehicle-edge-research\vehicle-edge-research\datasets[0m
+
+2026-10-31 15:27:02,416 INFO Overriding model.yaml nc=2 with nc=80
+2026-10-31 15:27:02,417 INFO 
+                   from  n    params  module                                       arguments                     
+2026-10-31 15:27:02,425 INFO   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+2026-10-31 15:27:02,426 INFO   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+2026-10-31 15:27:02,427 INFO   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+2026-10-31 15:27:02,427 INFO   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-10-31 15:27:02,428 INFO   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+2026-10-31 15:27:02,428 INFO   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-10-31 15:27:02,432 INFO   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+2026-10-31 15:27:02,433 INFO   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+2026-10-31 15:27:02,436 INFO   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+2026-10-31 15:27:02,437 INFO   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+2026-10-31 15:27:02,439 INFO  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+2026-10-31 15:27:02,439 INFO  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-10-31 15:27:02,439 INFO  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-10-31 15:27:02,441 INFO  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+2026-10-31 15:27:02,441 INFO  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-10-31 15:27:02,441 INFO  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-10-31 15:27:02,443 INFO  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+2026-10-31 15:27:02,443 INFO  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-10-31 15:27:02,443 INFO  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-10-31 15:27:02,446 INFO  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+2026-10-31 15:27:02,446 INFO  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-10-31 15:27:02,446 INFO  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-10-31 15:27:02,449 INFO  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+2026-10-31 15:27:02,459 INFO  23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+2026-10-31 15:27:02,660 INFO YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+2026-10-31 15:27:02,660 INFO 
+2026-10-31 15:27:02,678 INFO Transferred 696/708 items from pretrained weights
+2026-10-31 15:27:02,855 INFO [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+2026-10-31 15:27:05,809 INFO [34m[1mAMP: [0mchecks passed ✅
+2026-10-31 15:27:05,825 WARNING WARNING [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 13.5±6.6 MB/s, size: 50.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-10-31 15:27:05,866 INFO [34m[1mtrain: [0mNew cache created: D:\Do_An\vehicle-edge-research\vehicle-edge-research\vehicle-edge-research\datasets\coco8\labels\train.cache
+2026-10-31 15:27:05,881 WARNING WARNING [34m[1mval: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 14.2±3.5 MB/s, size: 54.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-10-31 15:27:05,891 INFO [34m[1mval: [0mNew cache created: D:\Do_An\vehicle-edge-research\vehicle-edge-research\vehicle-edge-research\datasets\coco8\labels\val.cache
+2026-10-31 15:27:05,891 INFO [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+2026-10-31 15:27:05,892 INFO [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+2026-10-31 15:27:07,599 INFO Plotting labels to D:\Do_An\Fire_Smoke_develop\script\runs\detect\train\labels.jpg... 
+2026-10-31 15:27:08,004 INFO Using 4 train, 4 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mD:\Do_An\Fire_Smoke_develop\script\runs\detect\train[0m
+Starting training for 100 epochs...
+2026-10-31 15:27:09,827 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:16,231 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:16,663 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:16,979 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:17,292 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:17,419 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:17,709 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:17,842 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:18,149 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:18,282 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:18,592 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:18,717 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:19,012 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:19,143 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:19,519 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:19,662 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:19,983 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:20,109 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:20,402 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:20,532 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:20,833 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:20,968 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:21,271 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:21,399 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:21,696 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:21,833 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:22,125 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:22,253 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:22,553 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:22,687 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:22,996 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:23,132 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:23,440 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:23,579 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:23,885 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:24,024 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:24,325 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:24,465 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:24,766 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:24,900 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:25,198 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:25,328 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:25,628 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:25,758 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:26,052 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:26,177 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:26,478 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:26,618 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:26,923 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:27,054 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:27,439 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:27,569 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:27,880 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:28,013 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:28,313 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:28,440 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:28,734 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:28,860 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:29,165 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:29,295 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:29,592 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:29,717 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:30,046 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:30,170 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:30,464 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:30,603 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:30,905 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:31,036 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:31,338 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:31,468 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:31,756 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:31,882 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:32,181 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:32,331 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:32,637 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:32,761 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:33,062 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:33,205 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:33,497 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:33,641 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:34,029 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:34,150 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:34,451 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:34,583 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:34,880 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:35,008 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:35,306 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:35,429 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:35,728 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:35,865 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:36,171 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:36,306 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:36,602 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:36,740 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:37,052 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:37,191 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:37,509 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:37,648 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:37,957 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:38,078 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:38,385 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:38,511 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:38,802 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:38,941 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:39,244 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:39,374 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:39,664 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:39,801 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:40,099 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:40,228 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:40,528 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:40,651 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:40,957 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:41,088 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:41,383 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:41,508 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:41,877 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:41,995 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:42,305 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:42,432 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:42,732 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:42,867 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:43,164 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:43,291 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:43,590 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:43,717 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:44,002 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:44,136 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:44,435 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:44,571 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:44,865 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:45,008 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:45,310 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:45,471 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:45,766 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:45,890 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:46,180 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:46,312 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:46,606 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:46,736 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:47,024 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:47,151 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:47,464 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:47,614 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:47,906 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:48,047 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:48,415 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:48,539 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:48,841 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:48,967 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:49,259 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:49,393 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:49,685 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:49,809 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:50,105 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:50,233 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:50,531 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:50,655 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:50,971 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:51,099 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:51,409 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:51,533 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:51,838 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:51,961 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:52,259 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:52,397 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:52,704 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:52,842 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:53,152 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:53,278 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:53,580 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:53,703 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:54,003 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:54,133 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:54,432 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:54,559 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:54,873 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:55,014 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:55,323 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:55,453 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:55,763 INFO Closing dataloader mosaic
+2026-10-31 15:27:55,764 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:55,893 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:56,267 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:56,396 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:56,702 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:56,832 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:57,125 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:57,246 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:57,542 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:57,667 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:57,965 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:58,084 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:58,389 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:58,511 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:58,812 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:58,945 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:59,256 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:59,393 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:27:59,697 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-10-31 15:27:59,832 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:28:00,126 INFO 
+100 epochs completed in 0.014 hours.
+2026-10-31 15:28:00,205 INFO Optimizer stripped from D:\Do_An\Fire_Smoke_develop\script\runs\detect\train\weights\last.pt, 5.5MB
+2026-10-31 15:28:00,286 INFO Optimizer stripped from D:\Do_An\Fire_Smoke_develop\script\runs\detect\train\weights\best.pt, 5.5MB
+2026-10-31 15:28:00,287 INFO 
+Validating D:\Do_An\Fire_Smoke_develop\script\runs\detect\train\weights\best.pt...
+2026-10-31 15:28:00,287 INFO Ultralytics 8.4.175 🚀 Python-3.13.14 torch-2.11.0+cu128 CUDA:0 (NVIDIA GeForce RTX 3060, 12288MiB)
+2026-10-31 15:28:00,694 INFO YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+2026-10-31 15:28:03,752 INFO                    all          4         17          0          0          0          0
+2026-10-31 15:28:03,753 INFO                 person          3         10          0          0          0          0
+2026-10-31 15:28:03,753 INFO                    dog          1          1          0          0          0          0
+2026-10-31 15:28:03,753 INFO                  horse          1          2          0          0          0          0
+2026-10-31 15:28:03,753 INFO               elephant          1          2          0          0          0          0
+2026-10-31 15:28:03,753 INFO               umbrella          1          1          0          0          0          0
+2026-10-31 15:28:03,753 INFO           potted plant          1          1          0          0          0          0
+2026-10-31 15:28:03,753 INFO Speed: 1.5ms preprocess, 14.5ms inference, 0.0ms loss, 4.8ms postprocess per image
+2026-10-31 15:28:03,753 INFO Results saved to [1mD:\Do_An\Fire_Smoke_develop\script\runs\detect\train[0m

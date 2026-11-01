@@ -1,7 +1,7 @@
 task: detect
 mode: train
 model: D:\Do_An\Fire_Smoke_develop\models\pretrained\yolo26n.pt
-data: D:/Do_An/Fire_Smoke_develop/configs/fire_smoke2_data.yaml
+data: D:/Do_An/Fire_Smoke_develop/configs/fire_smoke_V2_data.yaml
 epochs: 100
 patience: 25
 imgsz: 640
@@ -42,7 +42,7 @@ fliplr: 0.5
 mosaic: 0.5
 close_mosaic: 10
 mixup: 0.0
-project: D:/Do_An/Fire_Smoke_develop/runs/train/fire_smoke_yolo26n_V2
+project: D:/Do_An/Fire_Smoke_develop/runs/train/fire_smoke_V2
 name: fire_yolo26n
 exist_ok: false
 save: true

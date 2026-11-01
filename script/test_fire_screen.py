@@ -11,6 +11,7 @@ from pathlib import Path
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_RUN = "fire_smoke_V2"
 
 
 def parse_args():
@@ -18,7 +19,7 @@ def parse_args():
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--weights", type=Path, help="Path to trained best.pt")
-    source.add_argument("--run", default="fire_yolo26n", help="Folder under runs/train")
+    source.add_argument("--run", default=DEFAULT_RUN, help="Folder under runs/train")
     parser.add_argument("--video", type=Path, help="Input video; omit to open file picker")
     parser.add_argument("--conf", type=float, default=0.335)
     parser.add_argument("--imgsz", type=int, default=640)
@@ -34,9 +35,9 @@ def parse_args():
     return args
 
 
-def find_weights(requested, run="fire_yolo26n"):
+def find_weights(requested, run=DEFAULT_RUN):
     path = (requested.expanduser().resolve() if requested is not None
-            else ROOT / "runs" / "train" / run / "weights" / "best.pt")
+            else ROOT / "runs" / "train" / run / "fire_yolo26n" / "weights" / "best.pt")
     if not path.is_file():
         raise FileNotFoundError(f"Model not found: {path}. Choose --run / --weights explicitly.")
     return path
@@ -88,7 +89,7 @@ def predict_video(args, video, weights):
             print("Video FPS unavailable; using 30 FPS for output.")
         height, width = frame.shape[:2]
         model = YOLO(str(weights))
-        output_dir = ROOT / "predict" / "predict_model1_conf0.335"
+        output_dir = ROOT / "predict" / "FalsePositives_V2_conf0.335"
         output_dir.mkdir(parents=True, exist_ok=True)
         output_path = output_dir / f"{video.stem}_predict_{time.time_ns()}.mp4"
         writer = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*"mp4v"),

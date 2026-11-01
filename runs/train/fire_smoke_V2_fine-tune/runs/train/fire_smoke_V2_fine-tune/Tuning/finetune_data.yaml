@@ -1,0 +1,7 @@
+path: D:/Do_An/Fire_Smoke_develop/datasets/wildfire_v5_color
+names:
+  0: fire
+  1: smoke
+train: D:/Do_An/Fire_Smoke_develop/datasets/wildfire_v5_color/train/images
+val: D:/Do_An/Fire_Smoke_develop/datasets/wildfire_v5_color/valid/images
+test: D:/Do_An/Fire_Smoke_develop/datasets/wildfire_v5_color/test/images

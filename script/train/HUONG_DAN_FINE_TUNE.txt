@@ -1,0 +1,98 @@
+FINE-TUNE FIRE + SMOKE — 31/10/2026
+
+1. Cài đặt
+Thay hai file run_both.py và train_both.py trong cùng thư mục script của dự án.
+Chạy bằng Python/venv đang có ultralytics, torch và PyYAML như trước.
+Không cần đổi phiên bản Ultralytics chỉ để dùng hai script này.
+
+2. Thao tác
+Mở run_both.py, chọn 7.
+- Checkpoint nguồn: đường dẫn best.pt V2.
+- YAML DATASET MỚI: data.yaml có train, val, names; KHÔNG nhập args.yaml
+  hoặc YAML cấu hình train cũ.
+- Sau YAML có ba câu hỏi TRAIN, VALID, TEST: nhập đường dẫn đầy đủ tới
+  từng thư mục images để thay đường dẫn cũ. Enter giữ đường dẫn trong YAML.
+  TEST: nhập - để bỏ qua tập test, kể cả khi YAML cũ khai báo sai test.
+  Đường dẫn tương đối bạn nhập ở các câu hỏi này tính từ thư mục chứa YAML,
+  không tính từ trường path cũ. CLI tương ứng: --train-images, --val-images,
+  --test-images hoặc --no-test. Không sửa YAML nguồn.
+  Ví dụ, NẾU dữ liệu thực tế nằm cạnh data.yaml:
+  TRAIN: D:\Do_An\Fire_Smoke_develop\datasets\wildfire_v5_color\train\images
+  VALID: D:\Do_An\Fire_Smoke_develop\datasets\wildfire_v5_color\valid\images
+  TEST: D:\Do_An\Fire_Smoke_develop\datasets\wildfire_v5_color\test\images
+  Nếu thư mục của bạn tên val thay vì valid, nhập tên thực tế.
+- Thư mục kết quả: nhập trọn đường dẫn, ví dụ:
+  D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V2_fine-tune
+  Bạn tự đặt phần fire_smoke_V2_fine-tune; không nhập riêng tên lần nữa.
+- Epoch 40, patience 10, AdamW lr0 0.0001 là giá trị thử nghiệm ban đầu,
+  có thể nhập lại. Batch -1, imgsz 640, GPU 0, workers 0.
+- Chỉ kiểm tra dữ liệu/cấu hình: y để kiểm tra mà chưa train; n để train.
+- TensorBoard: n nếu chưa cài/không cần.
+
+Chế độ 7 nạp trọng số cũ nhưng tạo lượt train mới với resume=False,
+optimizer/scheduler/epoch mới. Bắt đầu epoch 1, không tiếp tục epoch V2.
+Không tự lấy data/project/name từ checkpoint hoặc args.yaml cũ.
+
+3. Quy tắc dữ liệu
+Giữ đúng fire=0, smoke=1 trong cả YAML và file .txt.
+Nếu nguồn dữ liệu đảo hai lớp, phải đổi ID trong label, không chỉ đổi names.
+Mỗi split hiện hỗ trợ một thư mục images; ảnh được tìm đệ quy.
+Mỗi ảnh phải có .txt cùng tên trong labels. Negative thật: .txt rỗng.
+Train và val cần có ảnh được gán bbox; không dùng toàn negative.
+Không tự gộp dataset cũ: YAML mới phải trỏ đến dữ liệu bạn muốn học,
+bao gồm các mẫu cũ đại diện nếu bạn muốn giữ lại chúng.
+Test không được sử dụng để học hoặc chọn best.pt.
+
+Đường dẫn tương đối trong YAML dataset được tính từ thư mục chứa YAML:
+- path: nếu tương đối thì tính từ vị trí YAML.
+- train/val/test: tính từ path; không có path thì từ thư mục chứa YAML.
+Nên dùng đường dẫn tuyệt đối và dấu / trong YAML trên Windows.
+Ví dụ (thay bằng đường dẫn thực tế):
+path: D:/Do_An/datasets/fire_smoke_V3
+train: train/images
+val: valid/images
+test: test/images
+names:
+  0: fire
+  1: smoke
+
+4. Lưu kết quả
+Script tách đường dẫn bạn nhập thành project (thư mục cha) và name (tên cuối).
+Cho phép thư mục đích chưa tồn tại hoặc đã tồn tại nhưng RỖNG.
+Thư mục có dữ liệu: báo lỗi, không ghi đè, không tự tăng hậu tố 2/3.
+Nếu lần chạy lỗi sau khi đã tạo file cấu hình, chọn một thư mục đích mới.
+Nếu lượt train đã hoàn thành ít nhất một epoch rồi bị ngắt, dùng mục 4
+với weights/last.pt của CHÍNH lượt fine-tune đó để tiếp tục.
+
+Trong đúng thư mục đích sẽ có:
+- finetune_data.yaml: bản đường dẫn tuyệt đối tới dataset mới.
+- finetune_train.yaml: cấu hình fine-tune mới, không ghi đè YAML nguồn.
+- args.yaml, results.csv, biểu đồ và weights/best.pt, weights/last.pt
+  do Ultralytics tạo khi huấn luyện.
+- train.log, environment.json, requirements-lock.txt, epochs.jsonl
+  do chức năng ghi log cũ cung cấp.
+
+Mục 1–6 vẫn được giữ. Mục 3 nhận YAML TRAIN có model/data.
+Mục 4 chỉ nhận .pt của lượt đang dở; checkpoint đã bỏ trạng thái optimizer
+sẽ bị từ chối thay vì tự chuyển sang train mới.
+Mục 5 dùng để đánh giá riêng. Nếu muốn thống kê PR/mAP ở ngưỡng thấp,
+kiểm tra conf trong YAML đánh giá (bộ tạo config cũ mặc định 0.25).
+Validation trong fine-tune mới dùng conf=0.001, khác ngưỡng predict video.
+
+5. Chạy bằng terminal (PowerShell, một dòng)
+python .\script\train_both.py finetune --weights "D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V2\weights\best.pt" --data "D:\Do_An\datasets\fire_smoke_V3\data.yaml" --output "D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V2_fine-tune" --epochs 40 --lr0 0.0001
+Thêm --dry-run để chỉ kiểm tra dữ liệu, không nạp model, không tạo run.
+
+6. Đọc log
+Dòng Speed: ... preprocess/inference/loss/postprocess per image là thống kê
+xử lý mỗi ảnh khi predict/validation, KHÔNG phải thời gian train 100 epoch.
+Xem bảng Epoch ... box_loss ... cls_loss ... dfl_loss, results.csv và
+thông báo số epoch fine-tune đã hoàn thành. Early stopping có thể dừng
+trước số epoch tối đa. Script mới báo lỗi nếu không có epoch train hoàn thành.
+Không đủ thông tin từ một dòng Speed để kết luận lỗi ở lần chạy cũ.
+
+7. Kiểm thử bản sửa
+Đã kiểm tra cú pháp và 17 ca kiểm thử logic với backend YOLO giả lập:
+định tuyến dataset/output, tên run, bảo vệ thư mục, loại YAML, class mapping,
+nhãn negative, dry-run, menu, resume và số epoch.
+Chưa chạy train GPU với checkpoint/dataset thực của bạn trong môi trường này.
