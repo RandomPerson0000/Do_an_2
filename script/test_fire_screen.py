@@ -11,7 +11,7 @@ from pathlib import Path
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_RUN = "fire_smoke_V2"
+DEFAULT_RUN = "fire_smoke_V2_fine-tune"
 
 
 def parse_args():
@@ -37,7 +37,7 @@ def parse_args():
 
 def find_weights(requested, run=DEFAULT_RUN):
     path = (requested.expanduser().resolve() if requested is not None
-            else ROOT / "runs" / "train" / run / "fire_yolo26n" / "weights" / "best.pt")
+            else ROOT / "runs" / "train" / run / "Tuning" / "weights" / "best.pt")
     if not path.is_file():
         raise FileNotFoundError(f"Model not found: {path}. Choose --run / --weights explicitly.")
     return path
@@ -76,6 +76,8 @@ def predict_video(args, video, weights):
     writer = None
     frame_count = 0
     stopped = False
+    preview_enabled = not args.no_preview
+    window_created = False
     window = "Fire / Smoke - video (Q or Esc to stop)"
     try:
         if not capture.isOpened():
@@ -89,7 +91,7 @@ def predict_video(args, video, weights):
             print("Video FPS unavailable; using 30 FPS for output.")
         height, width = frame.shape[:2]
         model = YOLO(str(weights))
-        output_dir = ROOT / "predict" / "FalsePositives_V2_conf0.335"
+        output_dir = ROOT / "predict" / "FalsePositives_V2_tune_conf0.335"
         output_dir.mkdir(parents=True, exist_ok=True)
         output_path = output_dir / f"{video.stem}_predict_{time.time_ns()}.mp4"
         writer = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*"mp4v"),
@@ -98,10 +100,16 @@ def predict_video(args, video, weights):
             raise OSError(f"Cannot create output video: {output_path}")
         print(f"Model: {weights}\nDevice: {device}\nInput: {video}\nOutput: {output_path}")
         print(f"Output: {width}x{height}, {fps:g} FPS, without audio.")
-        if not args.no_preview:
-            cv2.namedWindow(window, cv2.WINDOW_NORMAL)
-            scale = min(1.0, 960 / width, 640 / height)
-            cv2.resizeWindow(window, max(1, round(width * scale)), max(1, round(height * scale)))
+        if preview_enabled:
+            try:
+                cv2.namedWindow(window, cv2.WINDOW_NORMAL)
+                window_created = True
+                scale = min(1.0, 960 / width, 640 / height)
+                cv2.resizeWindow(window, max(1, round(width * scale)), max(1, round(height * scale)))
+            except cv2.error as exc:
+                preview_enabled = False
+                print(f"Preview unavailable: {exc}")
+                print("Continuing without preview; the output video will still be saved. Ctrl+C to stop.")
         while success:
             result = model.predict(source=frame, conf=args.conf, imgsz=args.imgsz,
                                    device=device, verbose=False, save=False)[0]
@@ -110,7 +118,7 @@ def predict_video(args, video, weights):
             frame_count += 1
             if frame_count % 100 == 0:
                 print(f"Processed {frame_count} frames.")
-            if not args.no_preview:
+            if preview_enabled:
                 cv2.imshow(window, annotated)
                 key = cv2.waitKey(1) & 0xFF
                 if key in (27, ord("q"), ord("Q")) or cv2.getWindowProperty(window, cv2.WND_PROP_VISIBLE) < 1:
@@ -123,8 +131,11 @@ def predict_video(args, video, weights):
         capture.release()
         if writer is not None:
             writer.release()
-        if not args.no_preview:
-            cv2.destroyAllWindows()
+        if window_created:
+            try:
+                cv2.destroyWindow(window)
+            except cv2.error as exc:
+                print(f"Could not close preview window: {exc}")
     if frame_count:
         status = "Stopped early; saved processed portion" if stopped else "Saved"
         print(f"{status}: {output_path} ({frame_count} frames)")
