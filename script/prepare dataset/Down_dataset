@@ -1,0 +1,14 @@
+from roboflow import Roboflow
+ 
+rf = Roboflow(api_key="Fp0L9ZL9WZyinXkCXT03")
+
+project = rf.workspace("ketteringwork").project("sunglare-boxes")
+ 
+version = project.version(2)
+
+dataset = version.download(
+    "yolov8",
+     location="D:\\Do_An\\Fire_Smoke_develop\\datasets\\Glare1"
+                            )
+ 
+print("Dataset đã lưu tại:", dataset.location)

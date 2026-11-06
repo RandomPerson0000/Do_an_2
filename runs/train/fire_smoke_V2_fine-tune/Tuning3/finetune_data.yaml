@@ -1,0 +1,7 @@
+path: D:/Do_An/Fire_Smoke_develop/datasets/Negative_Samples
+names:
+  0: fire
+  1: smoke
+train: D:/Do_An/Fire_Smoke_develop/datasets/Negative_Samples/train/images
+val: D:/Do_An/Fire_Smoke_develop/datasets/Negative_Samples/valid/images
+test: D:/Do_An/Fire_Smoke_develop/datasets/Negative_Samples/test/images

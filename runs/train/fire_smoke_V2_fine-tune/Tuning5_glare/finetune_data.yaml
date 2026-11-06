@@ -1,0 +1,7 @@
+path: D:/Do_An/Fire_Smoke_develop/datasets/FireSmokeDataset.v3i.yolo26_2classes
+names:
+  0: fire
+  1: smoke
+train: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune/train/images
+val: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune/valid/images
+test: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune/test/images

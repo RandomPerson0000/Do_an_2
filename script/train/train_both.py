@@ -428,7 +428,7 @@ def prepare_finetune(args):
     with tempfile.TemporaryDirectory(prefix="fire_smoke_check_") as tmp:
         check_file = Path(tmp) / "data.yaml"
         write_yaml(check_file, normalized)
-        check_dataset(check_file)
+        check_dataset(check_file, strict_missing_labels=False, require_positive=False)
     print("\nFINE-TUNE — lượt train mới, resume=False", flush=True)
     print(f"Trọng số nguồn: {weights}")
     print(f"YAML dataset nguồn: {data_path}")
