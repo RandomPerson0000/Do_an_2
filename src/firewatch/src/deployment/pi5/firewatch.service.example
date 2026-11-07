@@ -1,0 +1,20 @@
+[Unit]
+Description=FireWatch camera monitor
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=10
+
+[Service]
+Type=simple
+# Replace USERNAME and project path before installing.
+User=USERNAME
+WorkingDirectory=/home/USERNAME/Fire_Smoke_develop
+ExecStart=/home/USERNAME/Fire_Smoke_develop/.venv/bin/python /home/USERNAME/Fire_Smoke_develop/run_firewatch.py --config /home/USERNAME/Fire_Smoke_develop/configs/firewatch.yaml --headless
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

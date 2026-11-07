@@ -1,0 +1,33 @@
+FireWatch validation — 2026-11-07
+
+Command: python -m unittest discover -s tests -v
+Result: 14 tests passed; 0 failed; 0 skipped.
+Runtime reported by unittest: 0.168 seconds.
+
+Coverage exercised:
+- Path resolution relative to YAML project_root.
+- Invalid class mappings and invalid temporal parameters rejected.
+- Per-class confidence thresholds and class mapping (mock Ultralytics result).
+- Single flash rejected; sparse detections rejected by hit ratio.
+- Persistent detection produces one alarm_start.
+- Sustained negative evidence produces alarm_end; rearming works.
+- Long frame gaps cannot confirm stale evidence or clear an active alarm.
+- Fire and smoke states are independent.
+- Duplicate/backward/NaN/infinite timestamps rejected.
+- Live-reader latest-frame behavior, no duplicate consumption, read timeout
+  (mock camera backend).
+- Real OpenCV MJPEG AVI creation/decoding, overlay and JPEG snapshot encoding,
+  JSONL output, temporal start/end and EOF cleanup, using a fake detector.
+- Capture failure returns error code, preserves alarm state in session_end,
+  and closes source (fake source and detector).
+
+Additional checks:
+- python run_firewatch.py --check-config: passed.
+- python -m compileall -q src run_firewatch.py tests: passed.
+
+Not validated here:
+- Real YOLO .pt or .onnx model loading/inference, prediction accuracy.
+- Real webcam, RTSP server, Picamera2/CSI camera, Raspberry Pi 5 performance.
+- CUDA and systemd installation.
+
+The synthetic pipeline tests validate application behavior, not model quality.

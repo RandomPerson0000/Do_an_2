@@ -1,0 +1,6 @@
+# Reuse the Ultralytics version that trained/exported your YOLO26 model.
+# Install this file into the existing project venv; do not blindly upgrade it.
+ultralytics
+opencv-python
+PyYAML>=6
+onnxruntime

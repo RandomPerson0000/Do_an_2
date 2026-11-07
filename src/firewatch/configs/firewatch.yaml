@@ -1,0 +1,39 @@
+# Paths below are relative to project_root, itself relative to this YAML.
+project_root: D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V2\fire_yolo26n
+model: weights/best.pt
+source: 0                  # USB webcam; video path; RTSP URL; or picamera2
+imgsz: 640
+device: cpu                # Use "0" for a CUDA-enabled PyTorch .pt environment.
+iou: 0.7
+max_det: 100
+width: 1280
+height: 720
+camera_fps: 30
+frame_timeout_seconds: 10
+display: true
+save_snapshots: true
+output_dir: runs/firewatch
+
+# MUST match the class ordering of your training data.yaml.
+class_ids:
+  fire: 0
+  smoke: 1
+
+# Starting values for experiments, not calibrated thresholds.
+rules:
+  fire:
+    conf: 0.335
+    confirm_seconds: 1.0
+    window_seconds: 2.0
+    min_hits: 3
+    hit_ratio: 0.6
+    clear_seconds: 3.0
+    max_gap_seconds: 2.0
+  smoke:
+    conf: 0.335
+    confirm_seconds: 1.5
+    window_seconds: 3.0
+    min_hits: 3
+    hit_ratio: 0.6
+    clear_seconds: 5.0
+    max_gap_seconds: 2.0
