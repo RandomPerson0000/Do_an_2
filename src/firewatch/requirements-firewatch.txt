@@ -4,3 +4,4 @@ ultralytics
 opencv-python
 PyYAML>=6
 onnxruntime
+paho-mqtt>=2,<3

@@ -9,7 +9,8 @@ from .overlay import annotate
 from .temporal import AlarmManager
 
 
-def run(cfg, max_frames=None, detector_factory=Detector, source_factory=open_source):
+def run(cfg, max_frames=None, detector_factory=Detector, source_factory=open_source,
+        *, on_alarm=None):
     """Run one session; factories allow end-to-end tests without real hardware."""
     import cv2
     cfg.validate()
@@ -23,7 +24,7 @@ def run(cfg, max_frames=None, detector_factory=Detector, source_factory=open_sou
     reason = "stopped"
     frames = 0
     try:
-        writer = EventWriter(cfg.output_dir, cfg.save_snapshots)
+        writer = EventWriter(cfg.output_dir, cfg.save_snapshots, on_alarm=on_alarm)
         writer.emit("session_start", model=cfg.model, class_ids=cfg.class_ids,
                     thresholds={k: v.conf for k, v in cfg.rules.items()})
         detector = detector_factory(cfg)

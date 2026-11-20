@@ -8,18 +8,20 @@ import uuid
 
 
 class EventWriter:
-    def __init__(self, output_dir, save_snapshots=True):
+    def __init__(self, output_dir, save_snapshots=True, *, on_alarm=None):
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         self.directory = Path(output_dir) / f"{stamp}_{uuid.uuid4().hex[:8]}"
         self.directory.mkdir(parents=True, exist_ok=False)
         self.file = (self.directory / "events.jsonl").open("a", encoding="utf-8", buffering=1)
         self.save_snapshots = save_snapshots
         self.counter = 0
+        self.on_alarm = on_alarm
 
     def emit(self, kind, **data):
         record = {"utc": datetime.now(timezone.utc).isoformat(), "kind": kind, **data}
         self.file.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n")
         logging.info("%s %s", kind, data.get("label", ""))
+        return record
 
     def alarm(self, event, frame, detections):
         self.counter += 1
@@ -31,8 +33,10 @@ class EventWriter:
                 snapshot = path.name
             else:
                 self.emit("snapshot_error", label=event.label)
-        self.emit(event.kind, label=event.label, source_seconds=event.timestamp,
-                  snapshot=snapshot, detections=[asdict(d) for d in detections])
+        record = self.emit(event.kind, label=event.label, source_seconds=event.timestamp,
+                           snapshot=snapshot, detections=[asdict(d) for d in detections])
+        if self.on_alarm is not None:
+            self.on_alarm(record)
 
     def close(self):
         self.file.close()
