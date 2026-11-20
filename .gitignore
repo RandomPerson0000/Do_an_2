@@ -3,3 +3,5 @@ Video_fire/
 Video_smoke/
 predict/
 capture_4_test/
+
+.venv/
