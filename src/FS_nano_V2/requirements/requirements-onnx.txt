@@ -1,0 +1,3 @@
+-r requirements-pt.txt
+onnx
+onnxruntime

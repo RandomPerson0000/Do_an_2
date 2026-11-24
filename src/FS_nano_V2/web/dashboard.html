@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FS_nano_V2 · Giám sát lửa và khói</title>
+<style>
+  :root{color-scheme:light;font-family:Inter,"Segoe UI",sans-serif;color:#242c29;background:#f4f5f1}
+  *{box-sizing:border-box}
+  body{margin:0}
+  header{background:#192e29;color:#fff;padding:18px max(5vw,calc((100vw - 1080px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+  header strong{letter-spacing:.04em;font-family:Consolas,monospace}
+  #link{font-size:.86rem;color:#e2ede8}
+  main{max-width:1140px;margin:42px auto;padding:0 30px}
+  h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.12;letter-spacing:-.055em;margin:0 0 12px}
+  h2{font-size:1.15rem;margin:0 0 14px}
+  #updated,small,.empty{color:#53645d}
+  #updated{margin:0 0 28px;font-size:.9rem}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 22px}
+  .card,.panel{background:#fff;border:1px solid #d6ddd6;border-radius:12px}
+  .card{padding:18px 22px;border-top:4px solid #85958c}
+  .card.hot{border-top-color:#b9401c;background:#fff6f0}
+  .card h2{margin:0;color:#42534c;font-weight:550}
+  .total{display:block;font-size:2.55rem;font-weight:650;margin:4px 0;font-variant-numeric:tabular-nums}
+  .sources{font-size:.88rem;color:#4f5e56;overflow-wrap:anywhere;margin:4px 0 0}
+  .panel{padding:22px;margin:0 0 16px}
+  .panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.93rem}
+  td,th{text-align:left;padding:12px 8px;border-top:1px solid #e1e6e1;white-space:nowrap}
+  th{color:#526259;font-size:.8rem;font-weight:600}
+  td:first-child{font-variant-numeric:tabular-nums}
+  .start,.end{display:inline-block;padding:4px 9px;border-radius:5px;font-weight:600;font-size:.82rem}
+  .start{color:#9d3016;background:#ffebe2}.end{color:#285746;background:#eaf1ed}
+  .empty{padding:16px 0 0;margin:0}
+  footer{font-size:.86rem;color:#46564d}
+  @media(max-width:600px){main{padding:0 15px;margin-top:28px}.panel,.card{padding:14px}.cards{gap:9px}header{padding:15px}.panel-head{gap:0}td,th{padding:10px 6px}}
+</style>
+<header><strong>FS_nano_V2</strong><span id="link" role="status">Đang kết nối…</span></header>
+<main>
+  <h1>Giám sát lửa và khói</h1>
+  <p id="updated">Đang tải dữ liệu…</p>
+  <section class="cards" aria-label="Cảnh báo đang mở theo sự kiện đã nhận">
+    <article class="card" id="fire"><h2>Lửa</h2><strong class="total">—</strong><small>cảnh báo đang mở</small><p class="sources"></p></article>
+    <article class="card" id="smoke"><h2>Khói</h2><strong class="total">—</strong><small>cảnh báo đang mở</small><p class="sources"></p></article>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h2>Nhật ký cảnh báo</h2><small>100 sự kiện gần nhất</small></div>
+    <div class="scroll"><table>
+      <thead><tr><th>Thời điểm</th><th>Sự kiện</th><th>Loại</th><th>Thiết bị</th><th>Model</th><th>Độ tin cậy</th></tr></thead>
+      <tbody id="history"></tbody>
+    </table></div>
+    <p class="empty" id="empty" hidden>Chưa nhận sự kiện cảnh báo.</p>
+  </section>
+  <footer id="telegram"></footer>
+</main>
+<script>
+  const get = id => document.getElementById(id);
+  const formatTime = new Intl.DateTimeFormat("vi-VN", {dateStyle:"short",timeStyle:"medium"});
+  function render(data) {
+    get("link").textContent = data.mqtt ? "● MQTT đã kết nối" : "○ Đang chờ MQTT";
+    get("updated").textContent = "Cập nhật lúc " + formatTime.format(new Date()) + " · Giờ trên thiết bị xem";
+    for (const label of ["fire","smoke"]) {
+      const card = get(label);
+      const alerts = data.active.filter(item => item.label === label);
+      card.classList.toggle("hot", alerts.length > 0);
+      card.querySelector(".total").textContent = alerts.length;
+      card.querySelector(".sources").textContent = alerts.map(item => item.device + " · " + item.backend.toUpperCase()).join(", ");
+    }
+    const rows = document.createDocumentFragment();
+    for (const item of data.history) {
+      const row = document.createElement("tr");
+      row.insertCell().textContent = formatTime.format(new Date(item.utc));
+      const badge = document.createElement("span");
+      const start = item.kind === "alarm_start";
+      badge.className = start ? "start" : "end";
+      badge.textContent = start ? "Bắt đầu" : "Kết thúc";
+      row.insertCell().append(badge);
+      const confidence = item.confidence == null ? "—" : Math.round(item.confidence * 100) + "%";
+      for (const value of [item.label === "fire" ? "Lửa" : "Khói",item.device,item.backend.toUpperCase(),confidence]) {
+        row.insertCell().textContent = value;
+      }
+      rows.append(row);
+    }
+    get("history").replaceChildren(rows);
+    get("empty").hidden = data.history.length > 0;
+    get("telegram").textContent = (data.telegram ? "Telegram đã bật" : "Telegram đang tắt")
+      + (data.pending ? " · " + data.pending + " tin đang chờ gửi" : "");
+  }
+  async function refresh() {
+    try {
+      const response = await fetch("/api/alerts", {cache:"no-store",signal:AbortSignal.timeout(6000)});
+      if (!response.ok) throw Error();
+      render(await response.json());
+    } catch {
+      get("link").textContent = "○ Mất kết nối dashboard";
+      if (!get("history").children.length && get("fire").querySelector(".total").textContent === "—")
+        get("updated").textContent = "Đang chờ dữ liệu từ Pi…";
+    } finally {
+      setTimeout(refresh, 2000);
+    }
+  }
+  refresh();
+</script>
+</html>

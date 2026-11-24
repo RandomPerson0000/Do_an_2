@@ -135,7 +135,7 @@ def convert_dataset(source, destination):
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--dataset", type=Path, default=Path(r"D:\Do_An\Fire_Smoke_develop\datasets\FireSmokeDataset.v3i.yolo26").resolve(),
+    parser.add_argument("--dataset", type=Path, default=Path(r"D:\\Do_An\\Fire_Smoke_develop\\datasets\\Data_V3").resolve(),
                         help="Thu muc chua data.yaml, train, valid, test; mac dinh canh script.")
     parser.add_argument("--output", type=Path,
                         help="Thu muc moi de luu ket qua; mac dinh <dataset>_2classes cung cap.")

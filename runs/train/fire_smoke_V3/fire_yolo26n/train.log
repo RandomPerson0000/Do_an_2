@@ -1,0 +1,55 @@
+2026-11-24 00:51:48,827 INFO Overriding model.yaml nc=80 with nc=2
+2026-11-24 00:51:48,827 INFO 
+                   from  n    params  module                                       arguments                     
+2026-11-24 00:51:48,839 INFO   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+2026-11-24 00:51:48,839 INFO   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+2026-11-24 00:51:48,840 INFO   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+2026-11-24 00:51:48,840 INFO   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 00:51:48,841 INFO   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+2026-11-24 00:51:48,842 INFO   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 00:51:48,844 INFO   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+2026-11-24 00:51:48,845 INFO   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+2026-11-24 00:51:48,849 INFO   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+2026-11-24 00:51:48,850 INFO   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+2026-11-24 00:51:48,851 INFO  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+2026-11-24 00:51:48,851 INFO  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 00:51:48,851 INFO  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:51:48,853 INFO  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+2026-11-24 00:51:48,854 INFO  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 00:51:48,854 INFO  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:51:48,856 INFO  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+2026-11-24 00:51:48,856 INFO  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 00:51:48,856 INFO  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:51:48,858 INFO  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+2026-11-24 00:51:48,859 INFO  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 00:51:48,859 INFO  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:51:48,862 INFO  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+2026-11-24 00:51:48,874 INFO  23        [16, 19, 22]  1    241956  ultralytics.nn.modules.head.Detect           [2, 1, True, [64, 128, 256]]  
+2026-11-24 00:51:49,105 INFO YOLO26n summary: 260 layers, 2,504,580 parameters, 2,504,580 gradients, 5.9 GFLOPs
+2026-11-24 00:51:49,105 INFO 
+2026-11-24 00:51:49,131 INFO Transferred 696/708 items from pretrained weights
+2026-11-24 00:51:49,155 INFO [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+2026-11-24 00:51:49,155 INFO [34m[1mAMP: [0mdownloading yolo26n.pt for AMP checks (one-time, not used for training)...
+2026-11-24 00:51:53,669 INFO [34m[1mAMP: [0mchecks passed ✅
+2026-11-24 00:51:53,984 WARNING WARNING [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 8.1±3.6 MB/s, size: 40.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-11-24 00:52:59,928 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
+2026-11-24 00:53:01,889 INFO [34m[1mtrain: [0mNew cache created: D:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\labels.cache
+2026-11-24 00:53:02,483 INFO [34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=640 at 60.0% GPU memory utilization.
+2026-11-24 00:53:02,484 INFO [34m[1mAutoBatch: [0mCUDA:0 (NVIDIA GeForce RTX 3060) 12.00G total, 0.10G reserved, 0.05G allocated, 11.85G free
+2026-11-24 00:53:02,485 INFO       Params      GFLOPs  GPU_mem (GB)  forward (ms) backward (ms)                   input                  output
+2026-11-24 00:53:10,281 INFO      2534372        6.03         0.451         59.93          5783        (1, 3, 640, 640)                    list
+2026-11-24 00:53:16,399 INFO      2534372       12.06         0.703         97.62          4313        (2, 3, 640, 640)                    list
+2026-11-24 00:53:22,766 INFO      2534372       24.12         1.195         78.98          4632        (4, 3, 640, 640)                    list
+2026-11-24 00:53:29,060 INFO      2534372       48.24         2.210         29.54          4608        (8, 3, 640, 640)                    list
+2026-11-24 00:53:35,461 INFO      2534372       96.48         3.951         54.36          4676       (16, 3, 640, 640)                    list
+2026-11-24 00:53:35,533 INFO [34m[1mAutoBatch: [0mUsing batch-size 28 for CUDA:0 6.94G/12.00G (58%) ✅
+2026-11-24 00:53:35,824 INFO [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 91.7±50.6 MB/s, size: 32.2 KB)
+2026-11-24 00:53:37,319 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
+2026-11-24 00:53:37,982 WARNING WARNING [34m[1mval: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 9.8±2.6 MB/s, size: 41.3 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-11-24 00:53:49,059 INFO [34m[1mval: [0mNew cache created: D:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\valid\labels.cache
+2026-11-24 00:53:49,144 INFO [34m[1moptimizer:[0m AdamW(lr=0.001, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0004375), 126 bias(decay=0.0)
+2026-11-24 00:53:50,954 INFO Plotting labels to D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n\labels.jpg... 
+2026-11-24 00:53:51,379 INFO Using 111116 train, 18536 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mD:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n[0m
+Starting training for 100 epochs...

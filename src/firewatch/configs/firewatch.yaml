@@ -1,5 +1,5 @@
 # Paths below are relative to project_root, itself relative to this YAML.
-project_root: D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V2\fire_yolo26n
+project_root: ../../../runs/train/fire_smoke_V2/fire_yolo26n
 model: weights/best.pt
 source: 0                  # USB webcam; video path; RTSP URL; or picamera2
 imgsz: 640

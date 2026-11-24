@@ -1,0 +1,30 @@
+project_root: ../../..
+source: picamera2
+imgsz: 640
+device: cpu
+width: 1280
+height: 720
+camera_fps: 30
+display: false
+save_snapshots: true
+output_dir: runs/FS_nano_V2
+class_ids:
+  fire: 0
+  smoke: 1
+rules:
+  fire:
+    conf: 0.335
+    confirm_seconds: 1.0
+    window_seconds: 2.0
+    min_hits: 3
+    hit_ratio: 0.6
+    clear_seconds: 3.0
+    max_gap_seconds: 2.0
+  smoke:
+    conf: 0.335
+    confirm_seconds: 1.5
+    window_seconds: 3.0
+    min_hits: 3
+    hit_ratio: 0.6
+    clear_seconds: 5.0
+    max_gap_seconds: 2.0

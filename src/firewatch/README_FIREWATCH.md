@@ -2,9 +2,9 @@
 
 Bộ mã nguồn để ghép vào dự án `Fire_Smoke_develop`, dùng một mô hình detection có hai lớp `fire`, `smoke`. Python 3.10 trở lên; có thể dùng môi trường Python 3.12 hiện tại của bạn. Đây là bản nền để thử nghiệm ứng dụng, chưa được hiệu chỉnh hoặc đo tốc độ với trọng số/camera của bạn.
 
-## 1. Chép vào dự án
+## 1. Vị trí trong dự án
 
-Giải nén rồi chép **nội dung bên trong `firewatch_module`** vào thư mục gốc `D:\Do_An\Fire_Smoke_develop`. Thư mục `src` của gói cần được ghép với `src` hiện tại. Xem lại trước khi ghi đè nếu bạn đã có tệp trùng tên. Không cần di chuyển code train hoặc dataset.
+FireWatch nằm trong `src/firewatch/`. Các đường dẫn trong bảng và các lệnh bên dưới tính từ thư mục này. Để triển khai camera cùng dashboard web và Telegram, xem [hướng dẫn FS_nano_V2](../FS_nano_V2/README.md).
 
 | Tệp/thư mục | Công việc |
 |---|---|
@@ -18,14 +18,15 @@ Giải nén rồi chép **nội dung bên trong `firewatch_module`** vào thư m
 | `src/firewatch/app.py` | Điều phối vòng lặp, xử lý lỗi và giải phóng tài nguyên |
 | `src/firewatch/cli.py` | Các tùy chọn dòng lệnh |
 | `configs/firewatch.yaml` | Các tham số bạn thường cần chỉnh |
-| `src/deployment/pi5/firewatch.service.example` | Mẫu dịch vụ tự khởi động trên Pi |
+| `../deployment/pi5/firewatch.service.example` | Mẫu dịch vụ tự khởi động trên Pi |
 | `tests/test_firewatch.py` | Kiểm tra logic và pipeline bằng dữ liệu giả lập |
 
 ## 2. Chạy trên Windows trước
 
-Trong PowerShell của VS Code, tại thư mục gốc dự án và venv đã kích hoạt:
+Trong PowerShell của VS Code, kích hoạt venv rồi chạy từ thư mục gốc repo
 
 ```powershell
+cd src/firewatch
 python -m pip install -r requirements-firewatch.txt
 python run_firewatch.py --check-config
 ```
@@ -155,10 +156,10 @@ Chương trình chưa ghi toàn bộ video, chưa phát còi GPIO, chưa gửi T
 
 ## 7. Tự khởi động trên Pi (tùy chọn)
 
-Chạy thủ công thành công trước. Trong `src/deployment/pi5/firewatch.service.example`, thay `USERNAME` và tất cả đường dẫn bằng tài khoản/thư mục thực tế; đảm bảo tài khoản có quyền dùng camera và ghi `runs`.
+Chạy thủ công thành công trước. Trong `../deployment/pi5/firewatch.service.example`, thay `USERNAME` và các đường dẫn bằng tài khoản và thư mục thực tế của Pi. Tài khoản cần có quyền dùng camera và ghi nhật ký.
 
 ```bash
-sudo cp src/deployment/pi5/firewatch.service.example /etc/systemd/system/firewatch.service
+sudo cp ../deployment/pi5/firewatch.service.example /etc/systemd/system/firewatch.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now firewatch.service
 systemctl status firewatch.service
@@ -175,7 +176,7 @@ python -m unittest discover -s tests -v
 
 Kiểm thử logic không cần model. Kiểm thử pipeline cần NumPy/OpenCV và dùng video AVI tổng hợp + detector giả lập để kiểm tra đọc video, vẽ khung, lưu JPEG và các chuyển trạng thái. Đây **không phải** phép đo độ chính xác YOLO.
 
-Chưa có trọng số của bạn, webcam thật, Pi 5 hoặc Camera Module 3 trong môi trường soạn code. Vì vậy việc nạp checkpoint thực tế, inference `.pt`/`.onnx`, CUDA, RTSP và Picamera2 cần kiểm tra trên máy của bạn. Chưa tuyên bố FPS hay độ chính xác thực tế. Xem `TEST_RESULTS.txt` để biết kết quả kiểm thử kèm gói.
+Xem [kết quả kiểm thử FireWatch](tests/TEST_RESULTS.txt) để biết điều kiện và phạm vi của lần chạy được ghi lại. Đo FPS và độ chính xác với model và camera thực tế trên Pi của bạn.
 
 ## 9. Nguồn API tham khảo
 

@@ -114,12 +114,12 @@ def init_configs(args):
         print(f"Đã tạo: {file}")
 
 
-def check_dataset(data_file, split="train", *, strict_missing_labels=True,
+def check_dataset(data_file, split="train", *, strict_missing_labels=False,
                   require_positive=True):
     """Kiểm tra bbox 2 class và đếm ảnh/object theo annotation.
 
-    Train giữ quy tắc cũ: kiểm tra train + val, bắt buộc có file label.
-    Lệnh check dùng split=all, có thể thống kê cả ảnh thiếu file label.
+    Ảnh không có file label hoặc có label rỗng được tính là ảnh nền.
+    Có thể bật strict_missing_labels để kiểm tra bộ dữ liệu yêu cầu đủ file label.
     'Non-label fire/smoke' chỉ nghĩa là không có bbox của lớp đó trong nhãn;
     không chứng minh rằng ảnh thực tế không có đối tượng đó.
     """
@@ -173,7 +173,7 @@ def check_dataset(data_file, split="train", *, strict_missing_labels=True,
             label = Path(*parts).with_suffix(".txt")
             if not label.exists():
                 if strict_missing_labels:
-                    raise FileNotFoundError(f"Thiếu label: {label}. Ảnh negative cần .txt rỗng.")
+                    raise FileNotFoundError(f"Thiếu label: {label} (--strict-labels).")
                 stats["missing_labels"] += 1
                 continue
             if not label.is_file():
@@ -225,8 +225,7 @@ def check_dataset(data_file, split="train", *, strict_missing_labels=True,
     print("Ảnh có cả hai lớp được tính vào số ảnh đã label của cả fire và smoke. "
           "Thống kê không kiểm tra nội dung ảnh.")
     if any(stats["missing_labels"] for stats in results.values()):
-        print("Lưu ý: thiếu file label có thể là ảnh chưa gán nhãn. "
-              "Hãy kiểm tra trước khi coi là negative; kiểm tra trước train vẫn yêu cầu .txt rỗng.")
+        print("Ultralytics tính ảnh không có file label là ảnh nền.")
     return results
 
 
@@ -428,7 +427,7 @@ def prepare_finetune(args):
     with tempfile.TemporaryDirectory(prefix="fire_smoke_check_") as tmp:
         check_file = Path(tmp) / "data.yaml"
         write_yaml(check_file, normalized)
-        check_dataset(check_file, strict_missing_labels=False, require_positive=False)
+        check_dataset(check_file, require_positive=False)
     print("\nFINE-TUNE — lượt train mới, resume=False", flush=True)
     print(f"Trọng số nguồn: {weights}")
     print(f"YAML dataset nguồn: {data_path}")
@@ -547,7 +546,7 @@ def main():
     p.add_argument("--split", choices=["all", "train", "val", "valid", "test"], default="all",
                    help="Mặc định kiểm tra cả ba tập; train kiểm tra train + val như trước.")
     p.add_argument("--strict-labels", action="store_true",
-                   help="Báo lỗi khi thiếu .txt; mặc định check thống kê riêng các ảnh này.")
+                   help="Báo lỗi khi thiếu .txt. Mặc định ảnh thiếu .txt được tính là ảnh nền.")
     p = sub.add_parser("train")
     group = p.add_mutually_exclusive_group(required=True)
     group.add_argument("--config")

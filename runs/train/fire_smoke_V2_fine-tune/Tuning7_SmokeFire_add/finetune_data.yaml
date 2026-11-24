@@ -1,0 +1,7 @@
+path: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune3
+names:
+  0: fire
+  1: smoke
+train: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune3/train/images
+val: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune3/valid/images
+test: D:/Do_An/Fire_Smoke_develop/datasets/Data_tune3/test/images
