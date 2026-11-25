@@ -11,7 +11,7 @@ from pathlib import Path
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_RUN = "fire_smoke_V2_fine-tune"
+DEFAULT_RUN = "fire_smoke_V3"
 
 
 def parse_args():
@@ -37,7 +37,7 @@ def parse_args():
 
 def find_weights(requested, run=DEFAULT_RUN):
     path = (requested.expanduser().resolve() if requested is not None
-            else ROOT / "runs" / "train" / run / "Tuning7_SmokeFire_add"  / "weights" / "best.pt")
+            else ROOT / "runs" / "train" / run / "fire_yolo26n"  / "weights" / "best.pt")
     if not path.is_file():
         raise FileNotFoundError(f"Model not found: {path}. Choose --run / --weights explicitly.")
     return path
@@ -91,7 +91,7 @@ def predict_video(args, video, weights):
             print("Video FPS unavailable; using 30 FPS for output.")
         height, width = frame.shape[:2]
         model = YOLO(str(weights))
-        output_dir = ROOT / "predict" / "FalsePositives_V2_tune7_conf0.4"
+        output_dir = ROOT / "predict" / "Positives_V3_conf0.4"
         output_dir.mkdir(parents=True, exist_ok=True)
         output_path = output_dir / f"{video.stem}_predict_{time.time_ns()}.mp4"
         writer = cv2.VideoWriter(str(output_path), cv2.VideoWriter_fourcc(*"mp4v"),

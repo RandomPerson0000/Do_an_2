@@ -1,55 +1,299 @@
-2026-11-24 00:51:48,827 INFO Overriding model.yaml nc=80 with nc=2
-2026-11-24 00:51:48,827 INFO 
+2026-11-24 00:57:39,108 INFO Overriding model.yaml nc=80 with nc=2
+2026-11-24 00:57:39,109 INFO 
                    from  n    params  module                                       arguments                     
-2026-11-24 00:51:48,839 INFO   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
-2026-11-24 00:51:48,839 INFO   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
-2026-11-24 00:51:48,840 INFO   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
-2026-11-24 00:51:48,840 INFO   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
-2026-11-24 00:51:48,841 INFO   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
-2026-11-24 00:51:48,842 INFO   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
-2026-11-24 00:51:48,844 INFO   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
-2026-11-24 00:51:48,845 INFO   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
-2026-11-24 00:51:48,849 INFO   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
-2026-11-24 00:51:48,850 INFO   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
-2026-11-24 00:51:48,851 INFO  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
-2026-11-24 00:51:48,851 INFO  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
-2026-11-24 00:51:48,851 INFO  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
-2026-11-24 00:51:48,853 INFO  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
-2026-11-24 00:51:48,854 INFO  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
-2026-11-24 00:51:48,854 INFO  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
-2026-11-24 00:51:48,856 INFO  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
-2026-11-24 00:51:48,856 INFO  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
-2026-11-24 00:51:48,856 INFO  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
-2026-11-24 00:51:48,858 INFO  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
-2026-11-24 00:51:48,859 INFO  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
-2026-11-24 00:51:48,859 INFO  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
-2026-11-24 00:51:48,862 INFO  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
-2026-11-24 00:51:48,874 INFO  23        [16, 19, 22]  1    241956  ultralytics.nn.modules.head.Detect           [2, 1, True, [64, 128, 256]]  
-2026-11-24 00:51:49,105 INFO YOLO26n summary: 260 layers, 2,504,580 parameters, 2,504,580 gradients, 5.9 GFLOPs
-2026-11-24 00:51:49,105 INFO 
-2026-11-24 00:51:49,131 INFO Transferred 696/708 items from pretrained weights
-2026-11-24 00:51:49,155 INFO [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
-2026-11-24 00:51:49,155 INFO [34m[1mAMP: [0mdownloading yolo26n.pt for AMP checks (one-time, not used for training)...
-2026-11-24 00:51:53,669 INFO [34m[1mAMP: [0mchecks passed ✅
-2026-11-24 00:51:53,984 WARNING WARNING [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 8.1±3.6 MB/s, size: 40.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
-2026-11-24 00:52:59,928 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
-2026-11-24 00:53:01,889 INFO [34m[1mtrain: [0mNew cache created: D:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\labels.cache
-2026-11-24 00:53:02,483 INFO [34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=640 at 60.0% GPU memory utilization.
-2026-11-24 00:53:02,484 INFO [34m[1mAutoBatch: [0mCUDA:0 (NVIDIA GeForce RTX 3060) 12.00G total, 0.10G reserved, 0.05G allocated, 11.85G free
-2026-11-24 00:53:02,485 INFO       Params      GFLOPs  GPU_mem (GB)  forward (ms) backward (ms)                   input                  output
-2026-11-24 00:53:10,281 INFO      2534372        6.03         0.451         59.93          5783        (1, 3, 640, 640)                    list
-2026-11-24 00:53:16,399 INFO      2534372       12.06         0.703         97.62          4313        (2, 3, 640, 640)                    list
-2026-11-24 00:53:22,766 INFO      2534372       24.12         1.195         78.98          4632        (4, 3, 640, 640)                    list
-2026-11-24 00:53:29,060 INFO      2534372       48.24         2.210         29.54          4608        (8, 3, 640, 640)                    list
-2026-11-24 00:53:35,461 INFO      2534372       96.48         3.951         54.36          4676       (16, 3, 640, 640)                    list
-2026-11-24 00:53:35,533 INFO [34m[1mAutoBatch: [0mUsing batch-size 28 for CUDA:0 6.94G/12.00G (58%) ✅
-2026-11-24 00:53:35,824 INFO [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 91.7±50.6 MB/s, size: 32.2 KB)
-2026-11-24 00:53:37,319 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
-2026-11-24 00:53:37,982 WARNING WARNING [34m[1mval: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 9.8±2.6 MB/s, size: 41.3 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
-2026-11-24 00:53:49,059 INFO [34m[1mval: [0mNew cache created: D:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\valid\labels.cache
-2026-11-24 00:53:49,144 INFO [34m[1moptimizer:[0m AdamW(lr=0.001, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0004375), 126 bias(decay=0.0)
-2026-11-24 00:53:50,954 INFO Plotting labels to D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n\labels.jpg... 
-2026-11-24 00:53:51,379 INFO Using 111116 train, 18536 val images for fraction=1.0 at imgsz=640
-Using 0 dataloader workers
-Logging results to [1mD:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n[0m
+2026-11-24 00:57:39,109 INFO   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+2026-11-24 00:57:39,110 INFO   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+2026-11-24 00:57:39,110 INFO   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+2026-11-24 00:57:39,111 INFO   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 00:57:39,112 INFO   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+2026-11-24 00:57:39,112 INFO   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 00:57:39,114 INFO   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+2026-11-24 00:57:39,115 INFO   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+2026-11-24 00:57:39,119 INFO   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+2026-11-24 00:57:39,120 INFO   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+2026-11-24 00:57:39,121 INFO  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+2026-11-24 00:57:39,121 INFO  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 00:57:39,122 INFO  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:57:39,124 INFO  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+2026-11-24 00:57:39,124 INFO  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 00:57:39,124 INFO  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:57:39,126 INFO  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+2026-11-24 00:57:39,126 INFO  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 00:57:39,126 INFO  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:57:39,128 INFO  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+2026-11-24 00:57:39,129 INFO  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 00:57:39,129 INFO  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 00:57:39,132 INFO  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+2026-11-24 00:57:39,139 INFO  23        [16, 19, 22]  1    241956  ultralytics.nn.modules.head.Detect           [2, 1, True, [64, 128, 256]]  
+2026-11-24 00:57:39,229 INFO YOLO26n summary: 260 layers, 2,504,580 parameters, 2,504,580 gradients, 5.9 GFLOPs
+2026-11-24 00:57:39,229 INFO 
+2026-11-24 00:57:39,252 INFO Transferred 696/708 items from pretrained weights
+2026-11-24 00:57:39,271 INFO [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+2026-11-24 00:57:40,851 INFO [34m[1mAMP: [0mchecks passed ✅
+2026-11-24 00:57:41,127 INFO [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 725.7±405.2 MB/s, size: 40.0 KB)
+2026-11-24 00:57:42,689 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
+2026-11-24 00:57:43,291 INFO [34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=640 at 60.0% GPU memory utilization.
+2026-11-24 00:57:43,291 INFO [34m[1mAutoBatch: [0mCUDA:0 (NVIDIA GeForce RTX 3060) 12.00G total, 0.10G reserved, 0.05G allocated, 11.85G free
+2026-11-24 00:57:43,292 INFO       Params      GFLOPs  GPU_mem (GB)  forward (ms) backward (ms)                   input                  output
+2026-11-24 00:57:50,520 INFO      2534372        6.03         0.451         26.84          5355        (1, 3, 640, 640)                    list
+2026-11-24 00:57:56,552 INFO      2534372       12.06         0.703         94.15          4295        (2, 3, 640, 640)                    list
+2026-11-24 00:58:02,843 INFO      2534372       24.12         1.195         81.66          4564        (4, 3, 640, 640)                    list
+2026-11-24 00:58:09,147 INFO      2534372       48.24         2.210         166.1          4426        (8, 3, 640, 640)                    list
+2026-11-24 00:58:15,374 INFO      2534372       96.48         3.951         54.46          4536       (16, 3, 640, 640)                    list
+2026-11-24 00:58:15,442 INFO [34m[1mAutoBatch: [0mUsing batch-size 28 for CUDA:0 6.94G/12.00G (58%) ✅
+2026-11-24 00:58:15,719 INFO [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 492.3±362.0 MB/s, size: 32.2 KB)
+2026-11-24 00:58:17,294 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
+2026-11-24 00:58:17,943 INFO [34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 614.0±254.4 MB/s, size: 41.3 KB)
+2026-11-24 00:58:18,272 INFO [34m[1moptimizer:[0m AdamW(lr=0.001, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0004375), 126 bias(decay=0.0)
+2026-11-24 00:58:18,779 INFO Plotting labels to D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\labels.jpg... 
+2026-11-24 00:58:19,114 INFO Using 111116 train, 18536 val images for fraction=1.0 at imgsz=640
+Using 4 dataloader workers
+Logging results to [1mD:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3[0m
 Starting training for 100 epochs...
+2026-11-24 00:58:29,392 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 01:11:39,620 INFO                    all      18536      10855      0.244       0.61       0.26      0.141
+2026-11-24 01:11:40,227 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 01:24:16,741 INFO                    all      18536      10855      0.255       0.68      0.284      0.162
+2026-11-24 01:24:17,040 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 01:36:54,656 INFO                    all      18536      10855      0.258      0.695      0.299      0.173
+2026-11-24 01:36:54,955 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 01:49:31,874 INFO                    all      18536      10855      0.264      0.714      0.317      0.188
+2026-11-24 01:49:32,727 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 02:02:09,385 INFO                    all      18536      10855      0.274      0.708      0.326      0.198
+2026-11-24 02:02:09,721 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 02:14:46,754 INFO                    all      18536      10855      0.281      0.701      0.333      0.203
+2026-11-24 02:14:47,066 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 02:27:23,414 INFO                    all      18536      10855      0.285      0.705      0.336      0.206
+2026-11-24 02:27:23,706 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 02:39:59,730 INFO                    all      18536      10855      0.289      0.702      0.338      0.208
+2026-11-24 02:40:00,042 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 02:52:36,181 INFO                    all      18536      10855      0.291      0.704      0.341       0.21
+2026-11-24 02:52:36,509 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 03:05:12,246 INFO                    all      18536      10855      0.293      0.701      0.343      0.212
+2026-11-24 03:05:12,558 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 03:17:48,286 INFO                    all      18536      10855      0.296      0.697      0.345      0.215
+2026-11-24 03:17:48,619 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 03:30:24,665 INFO                    all      18536      10855      0.301      0.697      0.348      0.217
+2026-11-24 03:30:24,982 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 03:43:05,939 INFO                    all      18536      10855      0.306      0.691      0.349      0.219
+2026-11-24 03:43:06,255 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 09:19:28,890 INFO 
+                   from  n    params  module                                       arguments                     
+2026-11-24 09:19:28,899 INFO   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+2026-11-24 09:19:28,900 INFO   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+2026-11-24 09:19:28,900 INFO   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+2026-11-24 09:19:28,901 INFO   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 09:19:28,902 INFO   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+2026-11-24 09:19:28,902 INFO   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 09:19:28,905 INFO   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+2026-11-24 09:19:28,906 INFO   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+2026-11-24 09:19:28,910 INFO   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+2026-11-24 09:19:28,911 INFO   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+2026-11-24 09:19:28,913 INFO  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+2026-11-24 09:19:28,913 INFO  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 09:19:28,913 INFO  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 09:19:28,917 INFO  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+2026-11-24 09:19:28,917 INFO  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+2026-11-24 09:19:28,917 INFO  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 09:19:28,919 INFO  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+2026-11-24 09:19:28,919 INFO  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+2026-11-24 09:19:28,919 INFO  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 09:19:28,921 INFO  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+2026-11-24 09:19:28,922 INFO  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+2026-11-24 09:19:28,922 INFO  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+2026-11-24 09:19:28,926 INFO  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+2026-11-24 09:19:28,936 INFO  23        [16, 19, 22]  1    241956  ultralytics.nn.modules.head.Detect           [2, 1, True, [64, 128, 256]]  
+2026-11-24 09:19:29,136 INFO YOLO26n summary: 260 layers, 2,504,580 parameters, 2,504,580 gradients, 5.9 GFLOPs
+2026-11-24 09:19:29,136 INFO 
+2026-11-24 09:19:29,162 INFO Transferred 708/708 items from pretrained weights
+2026-11-24 09:19:29,191 INFO [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+2026-11-24 09:19:32,344 INFO [34m[1mAMP: [0mchecks passed ✅
+2026-11-24 09:19:32,678 WARNING WARNING [34m[1mtrain: [0mSlow image access detected (ping: 2.8±2.5 ms, read: 6.8±1.5 MB/s, size: 40.0 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-11-24 09:19:36,241 INFO [34m[1mtrain: [0mD:\Do_An\Fire_Smoke_develop\datasets\Data_V3_2classes\train\images\VideoFire178_f12_jpg.rf.a0278a0a93bfc50d7f8944aa4dd7df60.jpg: 1 duplicate labels removed
+2026-11-24 09:19:36,907 WARNING WARNING [34m[1mval: [0mSlow image access detected (ping: 0.9±1.6 ms, read: 14.6±5.2 MB/s, size: 60.4 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+2026-11-24 09:19:37,594 INFO [34m[1moptimizer:[0m AdamW(lr=0.001, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0004375), 126 bias(decay=0.0)
+2026-11-24 09:19:39,376 INFO Plotting labels to D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\labels.jpg... 
+2026-11-24 09:19:39,767 INFO Resuming training D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\weights\last.pt from epoch 14 to 100 total epochs
+2026-11-24 09:19:39,882 INFO Using 111116 train, 18536 val images for fraction=1.0 at imgsz=640
+Using 4 dataloader workers
+Logging results to [1mD:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3[0m
+Starting training for 100 epochs...
+2026-11-24 09:19:50,516 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 09:33:09,989 INFO                    all      18536      10855      0.306      0.694      0.352      0.221
+2026-11-24 09:33:10,600 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 09:46:02,301 INFO                    all      18536      10855      0.307      0.697      0.354      0.222
+2026-11-24 09:46:02,635 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 09:58:44,783 INFO                    all      18536      10855      0.307      0.699      0.355      0.223
+2026-11-24 09:58:45,071 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 10:11:26,976 INFO                    all      18536      10855       0.31      0.699      0.357      0.225
+2026-11-24 10:11:27,265 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 10:24:10,817 INFO                    all      18536      10855       0.31      0.697      0.358      0.226
+2026-11-24 10:24:11,112 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 10:36:52,666 INFO                    all      18536      10855      0.312      0.694       0.36      0.227
+2026-11-24 10:36:53,169 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 10:49:34,585 INFO                    all      18536      10855      0.311      0.695      0.361      0.228
+2026-11-24 10:49:34,875 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 11:02:13,680 INFO                    all      18536      10855      0.315      0.693      0.362       0.23
+2026-11-24 11:02:14,004 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 11:14:56,823 INFO                    all      18536      10855      0.317      0.692      0.363      0.231
+2026-11-24 11:14:57,122 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 11:27:39,348 INFO                    all      18536      10855      0.317      0.691      0.365      0.232
+2026-11-24 11:27:39,637 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 11:40:21,628 INFO                    all      18536      10855      0.318      0.692      0.365      0.233
+2026-11-24 11:40:21,937 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 11:53:03,865 INFO                    all      18536      10855      0.319      0.692      0.366      0.234
+2026-11-24 11:53:04,202 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 12:05:45,376 INFO                    all      18536      10855      0.319      0.692      0.366      0.234
+2026-11-24 12:05:45,668 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 12:18:26,802 INFO                    all      18536      10855      0.321      0.691      0.367      0.235
+2026-11-24 12:18:27,100 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 12:31:08,540 INFO                    all      18536      10855      0.321      0.695      0.368      0.236
+2026-11-24 12:31:08,827 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 12:43:50,071 INFO                    all      18536      10855      0.321      0.692      0.368      0.236
+2026-11-24 12:43:50,365 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 12:56:31,894 INFO                    all      18536      10855       0.32      0.691      0.368      0.237
+2026-11-24 12:56:32,215 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 13:09:14,213 INFO                    all      18536      10855       0.32       0.69      0.368      0.237
+2026-11-24 13:09:14,516 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 13:21:56,452 INFO                    all      18536      10855      0.321       0.69      0.369      0.238
+2026-11-24 13:21:56,736 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 13:34:38,334 INFO                    all      18536      10855       0.32      0.692       0.37      0.239
+2026-11-24 13:34:38,612 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 13:47:20,636 INFO                    all      18536      10855       0.32      0.691      0.369      0.239
+2026-11-24 13:47:20,985 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 14:00:02,127 INFO                    all      18536      10855       0.32      0.692      0.369      0.239
+2026-11-24 14:00:02,463 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 14:12:42,658 INFO                    all      18536      10855      0.319      0.694       0.37       0.24
+2026-11-24 14:12:42,970 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 14:25:25,113 INFO                    all      18536      10855      0.322      0.694      0.371       0.24
+2026-11-24 14:25:25,415 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 14:38:07,221 INFO                    all      18536      10855      0.322      0.694      0.372      0.241
+2026-11-24 14:38:07,545 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 14:50:51,045 INFO                    all      18536      10855      0.321      0.695      0.372      0.241
+2026-11-24 14:50:51,335 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 15:03:33,696 INFO                    all      18536      10855      0.322      0.696      0.372      0.241
+2026-11-24 15:03:34,174 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 15:16:16,590 INFO                    all      18536      10855      0.323      0.695      0.371       0.24
+2026-11-24 15:16:16,898 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 15:28:57,240 INFO                    all      18536      10855      0.323      0.697      0.372       0.24
+2026-11-24 15:28:57,544 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 15:41:38,786 INFO                    all      18536      10855      0.325      0.695      0.371       0.24
+2026-11-24 15:41:39,102 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 15:54:21,356 INFO                    all      18536      10855      0.324      0.696      0.371       0.24
+2026-11-24 15:54:21,669 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 16:07:03,771 INFO                    all      18536      10855      0.324      0.696      0.371       0.24
+2026-11-24 16:07:04,057 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 16:19:46,442 INFO                    all      18536      10855      0.324      0.695      0.371       0.24
+2026-11-24 16:19:46,740 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 16:32:34,926 INFO                    all      18536      10855      0.324      0.696       0.37       0.24
+2026-11-24 16:32:35,247 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 16:45:22,899 INFO                    all      18536      10855      0.326      0.694       0.37       0.24
+2026-11-24 16:45:23,239 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 16:58:10,230 INFO                    all      18536      10855      0.324      0.694      0.371       0.24
+2026-11-24 16:58:10,570 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 17:10:58,245 INFO                    all      18536      10855      0.324      0.696       0.37       0.24
+2026-11-24 17:10:58,554 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 17:23:47,403 INFO                    all      18536      10855      0.325       0.69       0.37      0.239
+2026-11-24 17:23:47,733 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 17:36:36,366 INFO                    all      18536      10855      0.324      0.693       0.37      0.239
+2026-11-24 17:36:36,922 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 17:49:25,180 INFO                    all      18536      10855      0.322      0.693      0.369      0.239
+2026-11-24 17:49:25,478 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 18:02:14,000 INFO                    all      18536      10855      0.322      0.693      0.369      0.239
+2026-11-24 18:02:14,324 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 18:15:02,725 INFO                    all      18536      10855      0.322      0.691      0.368      0.239
+2026-11-24 18:15:03,213 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 18:27:51,006 INFO                    all      18536      10855      0.323      0.686      0.367      0.238
+2026-11-24 18:27:51,330 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 18:40:39,530 INFO                    all      18536      10855      0.323      0.686      0.367      0.238
+2026-11-24 18:40:39,856 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 18:53:27,690 INFO                    all      18536      10855      0.323      0.686      0.365      0.237
+2026-11-24 18:53:27,991 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 19:06:16,304 INFO                    all      18536      10855      0.321      0.688      0.364      0.237
+2026-11-24 19:06:16,620 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 19:19:05,843 INFO                    all      18536      10855       0.32       0.69      0.364      0.236
+2026-11-24 19:19:06,134 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 19:31:55,081 INFO                    all      18536      10855       0.32      0.688      0.364      0.236
+2026-11-24 19:31:55,599 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 19:45:02,446 INFO                    all      18536      10855       0.32      0.687      0.364      0.236
+2026-11-24 19:45:02,769 INFO 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+2026-11-24 19:58:14,131 INFO                    all      18536      10855      0.322      0.682      0.363      0.236
+2026-11-24 19:58:14,138 INFO [34m[1mEarlyStopping: [0mTraining stopped early as no improvement observed in last 25 epochs. Best results observed at epoch 38, best model saved as best.pt.
+To update EarlyStopping(patience=25) pass a new patience value, i.e. `patience=300` or use `patience=0` to disable EarlyStopping.
+2026-11-24 19:58:14,471 INFO 
+50 epochs completed in 10.643 hours.
+2026-11-24 19:58:14,604 INFO Optimizer stripped from D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\weights\last.pt, 5.5MB
+2026-11-24 19:58:14,775 INFO Optimizer stripped from D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\weights\best.pt, 5.5MB
+2026-11-24 19:58:14,776 INFO 
+Validating D:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3\weights\best.pt...
+2026-11-24 19:58:14,777 INFO Ultralytics 8.4.175 🚀 Python-3.13.14 torch-2.11.0+cu128 CUDA:0 (NVIDIA GeForce RTX 3060, 12288MiB)
+2026-11-24 19:58:15,893 INFO YOLO26n summary (fused): 121 layers, 2,389,978 parameters, 0 gradients, 5.4 GFLOPs
+2026-11-24 19:59:26,989 INFO                    all      18536      10855      0.322      0.694      0.372      0.241
+2026-11-24 19:59:26,989 INFO                   fire       4226       5986      0.185      0.932      0.336      0.225
+2026-11-24 19:59:26,990 INFO                  smoke       4043       4869       0.46      0.456      0.407      0.257
+2026-11-24 19:59:26,990 INFO Speed: 0.1ms preprocess, 1.5ms inference, 0.0ms loss, 0.8ms postprocess per image
+2026-11-24 19:59:26,990 INFO Results saved to [1mD:\Do_An\Fire_Smoke_develop\runs\train\fire_smoke_V3\fire_yolo26n-3[0m
